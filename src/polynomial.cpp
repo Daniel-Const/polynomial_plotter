@@ -48,3 +48,18 @@ bool Polynomial::containsPoint(Point point)
 
     return this->evaluate(point.x) == point.y;
 }
+
+void example_poly()
+{
+    Polynomial p = Polynomial({{1, 2}, {2, 3}});
+
+    p.print();
+    float result = p.evaluate(3.0);
+    std::cout << "P(3) = " << result << std::endl;
+
+    Point point_a = Point(-1 / 3, -1 / 3);
+    Point point_b = Point(-0.2, -1);
+
+    std::cout << "-0.333, -0.333 is on P(x): " << (p.containsPoint(point_a) ? "Yes" : "No") << std::endl;
+    std::cout << "-0.2, -1 is on P(x): " << (p.containsPoint(point_b) ? "Yes" : "No") << std::endl;
+}

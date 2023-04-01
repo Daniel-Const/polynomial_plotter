@@ -22,13 +22,15 @@ endif(NOT OPENGL_FOUND)
 
 include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
 
-# Source files
-set(SOURCE_FILES
-    src/main.cpp
-    src/polynomial.cpp
-    src/point.cpp
-)
 
-add_executable(polynomial ${SOURCE_FILES})
+include_directories(lib/imgui)
 
-target_link_libraries(polynomial ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+# Project files
+file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+
+# Imgui files
+file(GLOB_RECURSE IMGUI_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/*.cpp)
+
+add_executable(polynomial ${SOURCES} ${IMGUI_SOURCES})
+
+target_link_libraries(polynomial ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
